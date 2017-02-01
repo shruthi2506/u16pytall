@@ -1,38 +1,22 @@
-echo "========================= virtualenv version ============================"
-echo "virtualenv --version"
-virtualenv --version
-printf "\n\n"
 
-declare -a versions=('python2.6' 'python2.7' 'python3.2' 'python3.3' 'python3.4' 'python3.5' 'pypy' 'pypy3')
+#!/bin/bash -e
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+declare -a versions=( '2.7.9' '3.2.5' '3.3.6' '3.4.6' '3.5.2' '3.6.0' 'pypy-5.1' 'pypy3.3-5.5-alpha' )   
 
 for version in "${versions[@]}"
-  do
-    echo "============ Setting up Virtual Environment for $version  ==========="
-    echo "mkdir ~/test_$version"
-    mkdir ~/test_$version
-    echo "cd ~/test_$version"
-    cd ~/test_$version
-    echo "virtualenv venv"
-    virtualenv venv
-    echo "virtualenv -p /usr/bin/$version" "venv"
-    virtualenv -p /usr/bin/$version venv
-    echo "source venv/bin/activate"
-    source venv/bin/activate
-    printf "\n\n"
+ do
+  echo "============ Setting up pyenv for $version  ==========="
+  eval "$(pyenv init -)"
+  pyenv virtualenv $version virtual$version
+  pyenv activate virtual$version
+  python -V
+  echo "==================== Deactivating pyenv ========================"
+  pyenv deactivate
+  echo "=================== Deactivation success========================"
+done
 
-    echo "======================== Python version ============================="
-    echo "python --version"
-    python --version
-    printf "\n\n"
-
-    echo "==================== Deactivating virtualenv ========================"
-    echo "deactivate"
-    deactivate
-    echo "cd ~"
-    cd ~
-    echo "rm -rf test_$version"
-    rm -rf test_$version
-    echo "rm -rf venv"
-    rm -rf venv
-    printf "\n\n"
-  done
