@@ -6,7 +6,7 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-declare -a versions=( '2.7.9' '3.2.5' '3.3.6' '3.4.6' '3.5.2' '3.6.0' 'pypy-5.1' 'pypy3.3-5.5-alpha' )   
+declare -a versions=( '2.6.9' '2.7.9' '3.2.5' '3.3.6' '3.4.6' '3.5.2' '3.6.0' 'pypy-5.1' )   
 
 for version in "${versions[@]}"
  do

@@ -36,12 +36,28 @@ eval "$(pyenv virtualenv-init -)"
 #Installing pypy3 as per u14 image
 ./u16pytall/version/pypy3.sh
 
-declare -a versions=('2.7.9' '3.2.5' '3.3.6' '3.4.6' '3.5.2' '3.6.0' 'pypy-5.1'  'pypy3.3-5.5-alpha')
+declare -a versions=( '2.6.9' '2.7.9' '3.2.5' '3.3.6' '3.4.6' '3.5.2' '3.6.0' 'pypy-5.1' )
 for version in "${versions[@]}"
 do
  echo "=================== Installing $version =============="
  pyenv install $version
  echo "==================== Successfully installed $version ================"
+ eval "$(pyenv init -)"
+ pyenv virtualenv $version virtual$version
+ pyenv activate virtual$version
+ if [ $version = '3.2.5' ] || [ $version = '3.5.2' ]
+ then
+   pip install nose mock pytest coverage
+ elif [ $version = 'pypy-5.1' ]
+ then
+   pip install pyopenssl ndg-httpsclient pyasn1
+   pip install nose mock pytest coverage
+ else
+   pip install pyopenssl ndg-httpsclient pyasn1
+   pip install nose mock pytest coverage
+   CFLAGS="-O0" pip install lxml
+ fi
+ source deactivate
 done
 
 
