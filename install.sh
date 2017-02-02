@@ -33,6 +33,7 @@ git clone https://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-vi
 echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
 eval "$(pyenv virtualenv-init -)"
 
+#Installing pypy3 as per u14 image
 ./u16pytall/version/pypy3.sh
 
 declare -a versions=('2.7.9' '3.2.5' '3.3.6' '3.4.6' '3.5.2' '3.6.0' 'pypy-5.1'  'pypy3.3-5.5-alpha')
