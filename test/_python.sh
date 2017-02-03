@@ -3,7 +3,7 @@ echo "virtualenv --version"
 virtualenv --version
 printf "\n\n"
 
-declare -a versions=('python2.6' 'python2.7' 'python3.2' 'python3.3' 'python3.4' 'python3.5' 'pypy' 'pypy3')
+declare -a versions=('python2.6' 'python2.7' 'python3.2' 'python3.3' 'python3.4' 'python3.5' 'python3.6' 'pypy' 'pypy3')
 
 for version in "${versions[@]}"
   do
